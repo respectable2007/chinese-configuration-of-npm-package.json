@@ -23,7 +23,26 @@
 * config
 * dependencies
 * GitHub URLs
-* Local Paths
+* 本地路径/Local Paths
+
+ 在npm@2.0.0中，可通过运行*npm install -S/npm install --save*来保存包的本地目录的路径。本地路径的形式如下： 
+ ```
+ ../foo/bar
+ ~/foo/bar
+ ./foo/bar
+ /foo/bar
+ ```
+ 使用以上本地路径形式，被认为是相对路径并添加到package.json中
+ ```
+ {
+  "name": "baz",
+  "dependencies": {
+    "bar": "file:../foo/bar"
+  }
+ }
+ ```
+ 此功能有助于本地脱机开发和创建一些不访问内部服务器但需要NPM安装的测试，安装的这些包不会被发布到公共注册表。 
+
 * 开发依赖包/devDependencies
 
   devDependencies对象用于定义用户可能不希望或不需要下载依赖包所包含的测试或文档框架的依赖包。
