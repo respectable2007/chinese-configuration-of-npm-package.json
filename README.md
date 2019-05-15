@@ -25,7 +25,30 @@
 * GitHub URLs
 * Local Paths
 * devDependencies
-* peerDependencies
+* 对等依赖包/peerDependencies
+  在某些情况下，需要表示包与主机工具或库的兼容性，而不必执行此主机的要求。这通常被称为插件。
+  模块可能公开了主机文档所预期和指定的特定接口。
+  举例
+  ```
+  {
+    "name": "tea-latte",
+    "version": "1.3.5",
+    "peerDependencies": {
+      "tea": "2.x"
+    }
+  }
+  ```
+  这样可以确保tea-latte只能与tea的第二个主要版本一起安装。运行*npm install tea-latte*可能产生以下依赖关系图：
+  ```
+  ├── tea-latte@1.3.5
+  └── tea@2.2.0
+  ```
+  **注意：如果peerDependencies指定的包在依赖关系树中没有显式依赖于更高版本，NPM@1和@2将自动安装这些包。然而在NPM@3中，将出现一条
+  **peerDependencies未安装的警告。** NPM@1和@2中的注意行为易混淆，且可容易产生依赖性地狱，因此，NPM@3重新设计，尽可能避免发生这种情况。
+  安装另一个与需求冲突的插件会发生错误。因此，请确保插件需求尽可能广泛，不要将其锁定到特定的补丁版本。
+  假设主机符合<font color="red">semver</font>，只有主包主版本的更改才会破坏插件。因此，如果处理过主包的每个1.x版本，请使用“^1.0”或“1.x”。如果
+  依赖于1.5.2中介绍的功能，请使用“>=1.5.2<2”。
+
 * 捆绑依赖包/bundledDependencies
 
   这个字段是一个数组，用来定义工程发布时被捆绑的依赖包。如果需要本地保存npm依赖包或通过单个文件下载使其可用，那么可在bundledDependencies数组指定
