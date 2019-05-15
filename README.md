@@ -26,7 +26,26 @@
 * Local Paths
 * devDependencies
 * peerDependencies
-* bundledDependencies
+* 捆绑依赖包/bundledDependencies
+
+  这个字段是一个数组，用来定义工程发布时被捆绑的依赖包。如果需要本地保存npm依赖包或通过单个文件下载使其可用，那么可在bundledDependencies数组指定
+  依赖包并执行*npm pack*命令，进而将这些依赖包捆绑到一个tarball文件中
+  举例：
+  先定义一个package.json文件：
+  ```
+  {
+    "name": "awesome-web-framework",
+    "version": "1.0.0",
+    "bundledDependencies": [
+      "renderized", 
+      "super-streams"
+    ]
+  }
+  ```
+  运行*npm pack*命令，获得awesome-web-framework.tgz文件（包含renderized和super-streams依赖包）；
+  运行*npm install awesome-web-framework.tgz*，则renderized和super-streams依赖包被安装在新工程内。
+  也可在package.json文件中，拼写为bundleDependencies。
+  
 * 可选依赖包/optionalDependencies
 
   用来存放一些可能找不到或安装失败的依赖包，进而不影响npm运行。这个字段为一个对象，语法是包名称：版本/URL。optionalDependencies和dependencies的
