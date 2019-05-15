@@ -34,8 +34,14 @@
 * cpu
 * preferGlobal
 * private
-* publishConfig
+* 发布配置/publishConfig
+
+  该属性可定义一组在发布时使用的配置值。如果您想设置标记、注册表或访问，那么它特别方便，这样可确保给定的包没有标记为“最新”、被发布到全局公共注册表和默认情况下范围模块是私有的。
+  可重写任何配置值，但只有“tag”、“registry”和“access”可能对发布有影响。
+  可重写的配置选项请参阅npm config。
+  
 * 默认值/default values
+
   npm会根据文件夹内容设置一些默认值，如下：
   * 如果你的文件夹根目录中包含server.js文件，那么npm会在scripts属性中定义node server.js命令
     ```
