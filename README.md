@@ -29,7 +29,10 @@
 * bundledDependencies
 * optionalDependencies
 * engines
-* enginesStrict
+* 引擎限制/enginesStrict
+
+  >=npm3.0.0 删除此属性,<npm3.0.0，引擎限制
+  
 * os
   
   用于指定一组运行的操作系统
@@ -37,11 +40,11 @@
   ```
   "os":["darwin","linux"]
   ```
-  可设置黑白名单
+  可设置黑白名单（一般用不到）
   ```
   "os":["!win32"]
   ```
-
+  主操作系统由process.platform决定
 * cpu
 
   用来指定一组代码运行的cpu架构。
