@@ -31,6 +31,17 @@
 * engines
 * enginesStrict
 * os
+  
+  用于指定一组运行的操作系统
+  可指定某个操作系统
+  ```
+  "os":["darwin","linux"]
+  ```
+  可设置黑白名单
+  ```
+  "os":["!win32"]
+  ```
+
 * cpu
 
   用来指定一组代码运行的cpu架构。
