@@ -3,7 +3,7 @@
 
    package.json是一个JSON文件，文件内声明了一个JSON，而不是一个JavaScript对象字面量。该文件描述的行为与npm-config有关。
 
-## package.json可配置属性
+## package.json可配置字段
 * name
 * version
 * description
@@ -28,10 +28,20 @@
 * peerDependencies
 * bundledDependencies
 * optionalDependencies
-* engines
+* 引擎配置/engines
+  
+  可用来指定工程运行的node版本，若未指定或值为\*，那么可在任何node版本运行。也可指定运行你的工程需要的npm版本
+  ```
+  {"engines": {"node": ">=0.10.3 <0.12"}}
+  {"engines": {"npm": "~1.0.20"}}
+  ```  
+  如果指定了引擎，那么npm要求必需添加node；如果没有指定，那么npm假设在node上运行。
+  
+  这个字段仅在按照依赖包时提供警告信息。
+  
 * 引擎限制/enginesStrict
 
-  >=npm3.0.0 删除此属性,<npm3.0.0，引擎限制
+   >=npm3.0.0 删除此属性,<npm3.0.0，引擎限制
   
 * os
   
