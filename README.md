@@ -32,8 +32,21 @@
 * enginesStrict
 * os
 * cpu
+
+  用来指定一组代码运行的cpu架构。
+  指定代码运行在某些cpu架构，如下：
+  ```
+  "cpu": ["x64","ia32"]
+  ```
+  指定cpu架构黑名
+  ```
+  "cpu:: ["!arm","!mips"]
+  ```
+  主cpu架构由process.arch决定
+  
 * 信息提示/preferGlobal
-  _已弃用_
+
+  *已弃用*
   
   之前用于触发NPM警告，现在用于提供信息，且建议尽可能将任何二进制文件安装为本地开发依赖包（devDependencies）。
   
