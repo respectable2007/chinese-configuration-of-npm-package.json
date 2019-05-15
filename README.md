@@ -32,7 +32,11 @@
 * enginesStrict
 * os
 * cpu
-* preferGlobal
+* 信息提示/preferGlobal
+  _已弃用_
+  
+  之前用于触发NPM警告，现在用于提供信息，且建议尽可能将任何二进制文件安装为本地开发依赖包（devDependencies）。
+  
 * 私有/private
 
   该属性为true，NPM将拒绝发布它。可防止意外发布私有库。
