@@ -24,8 +24,35 @@
 * dependencies
 * GitHub URLs
 * Local Paths
-* devDependencies
+* 开发依赖包/devDependencies
+
+  devDependencies对象用于定义用户可能不希望或不需要下载依赖包所包含的测试或文档框架的依赖包。
+  
+  当在工程根目录中运行*npm link/npm install*后，这些已安装的依赖包可以像其他NPM配置字段一样进行管理。更多主题信息，请参阅[npm-config](https://docs.npmjs.com/misc/config)
+  
+  对于平台未指定的构建步骤（例如将CopeScript或其他语言编译为JavaScript），可使用scripts的prepare来执行此操作，并将所需的包设置为一个开发依赖
+  包。
+  
+  举例
+  ```
+  { 
+    "name": "ethopia-waza",
+    "description": "a delightfully fruity coffee varietal",
+    "version": "1.2.3",
+    "devDependencies": {
+      "coffee-script": "~1.6.3"
+    },
+    "scripts": {
+      "prepare": "coffee -o lib/ -c src/waza.coffee"
+    },
+    "main": "lib/waza.js"
+  }
+  ```
+  发布之前，先执行script的prepare命令，这样用户可在未编译的情况下使用这些功能。在dev模式下（即本地运行*npm install*），用户也会运行并轻松测试这
+  个脚本。
+  
 * 对等依赖包/peerDependencies
+
   在某些情况下，需要表示包与主机工具或库的兼容性，而不必执行此主机的要求。这通常被称为插件。
   模块可能公开了主机文档所预期和指定的特定接口。
   举例
@@ -43,11 +70,14 @@
   ├── tea-latte@1.3.5
   └── tea@2.2.0
   ```
-  **注意：如果peerDependencies指定的包在依赖关系树中没有显式依赖于更高版本，NPM@1和@2将自动安装这些包。然而在NPM@3中，将出现一条
-  **peerDependencies未安装的警告。** NPM@1和@2中的注意行为易混淆，且可容易产生依赖性地狱，因此，NPM@3重新设计，尽可能避免发生这种情况。
+  **注意：如果peerDependencies指定的包在依赖关系树中没有显式依赖于更高版本，NPM@1和@2将自动安装这些包。然而在NPM@3中，将出现一条**
+  **peerDependencies未安装的警告。** 
+  
+  NPM@1和@2中的注意行为易混淆，且可容易产生依赖性地狱，因此，NPM@3重新设计，尽可能避免发生这种情况。
+  
   安装另一个与需求冲突的插件会发生错误。因此，请确保插件需求尽可能广泛，不要将其锁定到特定的补丁版本。
-  假设主机符合<font color="red">semver</font>，只有主包主版本的更改才会破坏插件。因此，如果处理过主包的每个1.x版本，请使用“^1.0”或“1.x”。如果
-  依赖于1.5.2中介绍的功能，请使用“>=1.5.2<2”。
+  假设主机编译符合<font color=red>semver</font>，只有主包主版本的更改才会破坏插件。因此，如果处理过主包的每个1.x版本，请使用“^1.0”或“1.x”。如
+  果依赖于1.5.2中介绍的功能，请使用“>=1.5.2<2”。
 
 * 捆绑依赖包/bundledDependencies
 
