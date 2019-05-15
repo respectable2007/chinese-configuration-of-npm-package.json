@@ -21,8 +21,72 @@
 * repository
 * scripts
 * config
-* dependencies
+* 依赖包/dependencies
+  
+  该字段，是一个简单的对象，以包名:包版本范围形式来保存工程依赖包。依赖包也可以是tarball文件或Git URL。
+  
+  注意：请不要在dependencies中放置依赖包测试框架或转换器。请参阅*devdependencies*。
+  
+  包版本范围是一个字符串，其中有一个或多个空格分隔的描述符。有关指定版本范围的详细信息，请参见[semver](https://docs.npmjs.com/misc/semver)。
+   +version 必须与版本完全匹配
+   ->version 必须大于版本
+   +>=version 必须大于等于版本
+   -<version 必须小于版本
+   +<=version 必须小于等于版本
+   -~version “近似等同于版本”见[semver](https://docs.npmjs.com/misc/semver)
+   +^version “与版本兼容”见[semver](https://docs.npmjs.com/misc/semver)
+   -1.2.x 1.2.0,1.2.1，etc.,but not 1.3.0
+   +http://… 请参阅“URLs as Dependencies”
+   -* 匹配任何版本
+   +"" 空字符串与*相同
+   -version1 - version2 与>=version1 <=version2相同，介于版本1和版本2间
+   +range1 || range2 只要满足范围1或范围2即可
+   -git… 请参阅“URLs as Dependencies”
+   +user/repo 请参见“Github URL”
+   -tag 已标记并发布为标记的特定版本，请参见[npm-dist-tag](https://docs.npmjs.com/cli/dist-tag)
+   +path/path/path 请参阅“localPaths”
+  以下这些形式均有效：
+  ```
+  { "dependencies" :
+    { "foo" : "1.0.0 - 2.9999.9999"
+     , "bar" : ">=1.0.2 <2.1.2"
+     , "baz" : ">1.0.2 <=2.3.4"
+     , "boo" : "2.0.1"
+     , "qux" : "<1.0.0 || >=2.3.1 <2.4.5 || >=2.5.2 <3.0.0"
+     , "asd" : "http://asdf.com/asdf.tar.gz"
+     , "til" : "~1.2"
+     , "elf" : "~1.2.3"
+     , "two" : "2.x"
+     , "thr" : "3.3.x"
+     , "lat" : "latest"
+     , "dyl" : "file:../dyl"
+    }
+  }
+  ```
+  **URLs as Dependencies**
+  
+  您可以指定tarball URL来代替版本范围。
+  此tarball将在安装时下载并安装到本地包中。
+  
+  **Git URLs as Dependencies**
+  
+  Git URLs的形式如下：
+  ```
+  <protocol>://[<user>[:<password>]@]<hostname>[:<port>][:][/]<path>[#<commit-ish> | #semver:<semver>]
+  ```
+  <protocol> is one of git, git+ssh, git+http, git+https, or git+file.
+   
+   如果提供了<commit ish>，则将使用它精确克隆该提交。如果提交ISH的格式为semver:<semver>，<semver>可以是任何有效的semver范围或精确的版本，并且NPM将在远程存储库中查找与该范围匹配的任何标记或引用，就像查找注册表依赖项一样。如果未指定<commit ish>或semver:<semver>，则使用master。
+   
+   举例
+   ```
+   git+ssh://git@github.com:npm/cli.git#v1.0.27
+   git+ssh://git@github.com:npm/cli#semver:^5.0
+   git+https://isaacs@github.com/npm/cli.git
+   git://github.com/npm/cli.git#v1.0.27
+   ```
 * GitHub URLs
+
   根据1.1.65版本，可将GitHub URL以"Foo"："user/Foo-project"形式添加到dependencies中（类似于Git URL），也可将添加后缀*commit-ish*，示例如
   下：
   ```
