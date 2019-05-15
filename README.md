@@ -27,7 +27,29 @@
 * devDependencies
 * peerDependencies
 * bundledDependencies
-* optionalDependencies
+* 可选依赖包/optionalDependencies
+
+  用来存放一些可能找不到或安装失败的依赖包，进而不影响npm运行。这个字段为一个对象，语法是包名称：版本/URL。optionalDependencies和dependencies的
+  区别在于构建失败不会导致安装失败。
+  
+  你的工程可利用这个字段来处理依赖包缺失的问题，比如：
+  ```
+  try {
+    var foo = require('foo')
+    var fooVersion = require('foo/package.json').version
+  } catch (er) {
+    foo = null
+  }
+  if ( notGoodFooVersion(fooVersion) ) {
+    foo = null
+  }
+  // .. then later in your program ..
+  if (foo) {
+    foo.doFooThings()
+  }
+  ```
+  此外，可选依赖包会覆盖依赖包中的同名条目，建议同一依赖包放在一个位置上。
+  
 * 引擎配置/engines
   
   可用来指定工程运行的node版本，若未指定或值为\*，那么可在任何node版本运行。也可指定运行你的工程需要的npm版本
