@@ -18,10 +18,42 @@
 * bin
 * man
 * directories
-* repository
+* 仓库/repository
 
+  这个字段，用来指定代码所在的位置。值可为字符串或对象，对象中，可设置type和url属性。指定仓库有利于其他人做贡献。
   
+  如果git repo在github上，那么npm docs命令可找到相关信息。 
 
+  举例
+  ```
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/npm/cli.git"
+  }
+
+  "repository": {
+    "type" : "svn",
+    "url" : "https://v8.googlecode.com/svn/trunk/"
+  }
+  ```
+  url必须是一个公开的（可能是只读的）URL，可以不需要任何修改直接传递给VCS程序。不可以是浏览器访问的HTML页的URL，是因为url是为电脑设计的。
+
+  对于GitHub、GitHub Gist、BitBucket或GitLab仓库，可以使用用于NPM安装的快捷方式语法：
+  ```
+  "repository": "npm/npm"
+  "repository": "github:user/repo"
+  "repository": "gist:11081aaa281"
+  "repository": "bitbucket:user/repo"
+  "repository": "gitlab:user/repo"
+  ```
+  如果包的package.json不在根目录中（例如，它是monorepo的一部分），则可以指定它所在的目录：
+  ```
+  "repository": {
+   "type" : "git",
+   "url" : "https://github.com/facebook/react.git",
+   "directory": "packages/react-dom"
+  }
+  ```
 * 脚本命令/scripts
 
   这个字段，是一个字典对象，包含包生命周期不同阶段所运行的script命令，键是生命周期事件，值是这个事件运行所需的命令
