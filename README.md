@@ -5,10 +5,25 @@
 
 ## package.json可配置字段
 * name
-* version
-* description
-* keywords
-* homepage
+* 版本/version
+  
+  
+
+* 描述/description
+
+  这个字段，是一个字符串，有利于用户在npm search中更快的找到你的包。
+
+* 关键字/keywords
+
+  这个字段，是一个字符串数组，有利于用户在npm search中更快的找到你的包。
+
+* 主页/homepage
+
+  指定项目主页url，如下：
+  ```
+  "homepage": "https://github.com/owner/project#readme"
+  ```
+
 * 问题/bugs
 
   可以是用来跟踪项目问题的URL，也可以是向作者报告问题的电子邮件地址，方便那些引用包遇到问题的人。如下：
