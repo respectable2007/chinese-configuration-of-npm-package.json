@@ -9,7 +9,20 @@
 * description
 * keywords
 * homepage
-* bugs
+* 问题/bugs
+
+  可以是用来跟踪项目问题的URL，也可以是向作者报告问题的电子邮件地址，方便那些引用包遇到问题的人。如下：
+  ```
+  { 
+    "bugs": {
+      "url" : "https://github.com/owner/project/issues",
+      "email" : "project@hostname.com"
+    }
+  }
+  ```
+  可以指定一个或两个值。如果只提供一个URL，可将“bugs”的值指定为一个字符串，而不是一个对象。
+  如果提供了一个URL，可以使用npm bugs命令。
+
 * 证书/license
   
   这个字段，用来指定包的许可证，方便其他用户使用和了解包的限制。
