@@ -76,9 +76,10 @@
   ```
   <protocol>://[<user>[:<password>]@]<hostname>[:<port>][:][/]<path>[#<commit-ish> | #semver:<semver>]
   ```
-  <protocol>可以为这些值：git、git+ssh、git+http、git+https、git+file.
+  \<protocol\>可以为这些值：git、git+ssh、git+http、git+https、git+file.
    
-   如果Git URLs中包含#<commit-ish>，则将使用它精确克隆该提交。如果提交ISH的格式为semver:<semver>，<semver>可以是任何有效的semver范围或精确的版本，并且NPM将在远程存储库中查找与该范围匹配的任何标记或引用，就像查找注册表依赖项一样。如果未指定<commit ish>或semver:<semver>，则使用master。
+   如果Git URLs中包含#<commit-ish>，则精确复制发生这个提交时的包。
+   如果提交ISH的格式为semver:<semver>，<semver>可以是任何有效的semver范围或精确的版本，并且NPM将在远程存储库中查找与该范围匹配的任何标记或引用，就像查找注册表依赖项一样。如果未指定<commit ish>或semver:<semver>，则使用master。
    
    举例
    ```
