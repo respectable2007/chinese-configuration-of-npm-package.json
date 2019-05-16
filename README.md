@@ -6,7 +6,25 @@
 ## package.json可配置字段
 * 名称/name
 
+  如果打算发布包，那么package.json必须包含name和versiion。name和version生成唯一的标识符。包发生更改，version也应发生更改。
   
+  如果不打算发布包，那么name和version是可选的。
+
+  name，是你的工程的名称。
+
+  命名规则：
+  * 名称必须少于或等于214个字符。这包括作用域包的作用域。
+  * 名称不能以点或下划线开头。
+  * 新包的名称中不能包含大写字母。
+  * 名称最终是URL、命令行上的参数和文件夹名称的一部分。因此，名称不能包含任何非URL安全字符。
+
+  命名技巧：
+  * 不要与核心node模块相同的名称。
+  * 不要将“js”或“node”放在名称中。如果是js，当在写package.json文件时，可以使用“engines”字段指定引擎。（见下文）
+  * 名称可能会作为参数传递给require()，因此名称应尽量简短，但也应该是合理的描述性的。
+  * 可能在[https://www.npmjs.com/](https://www.npmjs.com/)上查阅NPM注册表，来看看名称是否已经存在。
+  
+  名称也可以以scope作为前缀，例如@myorg/mypackage。更多细节见[npm-scope](https://docs.npmjs.com/misc/scope)。
 
 * 版本/version
   
