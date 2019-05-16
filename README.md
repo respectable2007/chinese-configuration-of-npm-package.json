@@ -16,6 +16,37 @@
 * main
 * browser
 * bin
+  
+  包可以包含一个或多个用户可能安装到路径中的可执行文件。NPM简化了这个过程，实际上，NPM使用这个字段来安装“NPM”可执行文件。
+  这个字段，是一个对象，键是命令名，值是本地文件名。全局安装，NPM将该文件与*prefix/bin*建立符号链接，本地安装，则将文件与**./node_modules/.bin/*建立符号链接。 
+
+  举例，
+  ```
+  { "bin" : { 
+    "myapp" : "./cli.js" 
+    } 
+  }
+  ```
+  当安装myapp时，将创建cli.js脚本文件和/usr/local/bin/myapp的符号链接。
+
+  如果只有一个可执行文件，并且命令名与包名相同，那么可以省略命令名，将值作为字符串赋值给bin。例如：
+  ```
+  { "name": "my-program", 
+    "version": "1.2.5", 
+    "bin": "./path/to/program" 
+  }
+  ```
+  与如下等效：
+  ```
+  { "name": "my-program", 
+    "version": "1.2.5", 
+    "bin" : { 
+      "my-program" : "./path/to/program" 
+    } 
+  }
+  ```
+  请确保bin中引用的文件以**#！/usr/bin/env node*为开头，否则脚本将在没有可执行节点的情况下启动！ 
+
 * man
   
   这个字段，是一个数组，用于设置man程序可查找的单个文件或一组文件。 
