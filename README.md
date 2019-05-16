@@ -10,9 +10,81 @@
 * keywords
 * homepage
 * bugs
-* license
-* 作者
-* files
+* 证书/license
+  
+  这个字段，用来指定包的许可证，方便其他用户使用和了解包的限制。
+  如果是通用许可证（如BSD-2-Clause或MIT），请添加当前的SPDX许可证ID，如下：
+  ```
+  { "license" : "BSD-3-Clause" }
+  ```
+  请查阅[SPDX许可证ID的完整列表](https://spdx.org/licenses/)。理想情况下，应该选择OSI批准的SPDX许可证ID。
+
+  如果包是在多个通用许可证下获得许可的，请使用[SPDX许可证表达式语法版本2.0字符串](https://spdx.org/licenses/)，如下：
+  ```
+  { "license" : "(ISC OR GPL-3.0)" }
+  ```
+  如果许可证尚未分配SPDX ID，或者是自定义许可证，可使用如下字符串值：
+  ```
+  { "license" : "SEE LICENSE IN <filename>" }
+  ```
+  在包的顶层包含一个名为\<filename\>的文件。
+
+  一些老版本的包使用许可证对象或许可证对象数组： 
+  ```
+  // Not valid metadata
+  { "license" :
+    { "type" : "ISC", 
+      "url" : "https://opensource.org/licenses/ISC"
+    }
+  }
+  // Not valid metadata
+  { "licenses" :
+    [
+      { "type": "MIT",
+        "url": "https://www.opensource.org/licenses/mit-license.php"
+      },
+      { "type": "Apache-2.0",
+        "url": "https://opensource.org/licenses/apache2.0.php"
+      }
+    ]
+  }
+  ```
+  这些现在已被弃用。相反，使用SPDX表达式，如下：
+  ```
+  { "license": "ISC" }
+  { "license": "(MIT OR Apache-2.0)" }
+  ```
+  最后，如果不允许其他人在任何目录下使用私有或未发布包，可如下设置： 
+  ```
+  { "license": "UNLICENSED" }
+  ```
+  还可以设置"private"：true,以防止意外发布。
+
+* 作者/people fields
+  
+  **author**
+  这个字段，是一个作者，是一个对象，包含name、email和url三个字段，email和url为可选字段，如下
+  ```
+  {
+    "author": { 
+      "name" : "Barney Rubble",
+      "email" : "b@rubble.com",
+      "url" : "http://barnyrubble.tumblr.com/"
+    }
+  }
+  ```
+  也可以简写成：
+  ```
+  {
+    "author": "Barney Rubble <b@rubble.com> (http://barneyrubble.tumblr.com/)"
+  }
+  ```
+  **contributors**
+  这个字段，是一个贡献者数组
+
+  npm也可以设置maintainers字段，来显示创作者信息
+
+* 文件/files
 
    这个字段是一个文件格式数组，描述当包作为依赖包安装时所包含的条目。文件格式的语法类似于.gitignore。但当文件格式包括文件、目录或glob格式（\*，**/*等）时，文件在打包时被写入tarball中。
    省略该字段或设置为["*"]，这意味着将包含所有文件。
