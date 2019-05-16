@@ -27,24 +27,24 @@
   
   注意：请不要在dependencies中放置依赖包测试框架或转换器。请参阅*devdependencies*。
   
-  包版本范围是一个字符串，其中有一个或多个空格分隔的描述符。有关指定版本范围的详细信息，请参见[semver](https://docs.npmjs.com/misc/semver)。
-   *version 必须与版本完全匹配
-   *>version 必须大于版本
-   *>=version 必须大于等于版本
-   *<version 必须小于版本
-   *<=version 必须小于等于版本
-   *~version “近似等同于版本”见[semver](https://docs.npmjs.com/misc/semver)
-   *^version “与版本兼容”见[semver](https://docs.npmjs.com/misc/semver)
-   *1.2.x 1.2.0,1.2.1，etc.,but not 1.3.0
-   *http://… 请参阅“URLs as Dependencies”
-   ** 匹配任何版本
-   *"" 空字符串与*相同
-   *version1 - version2 与>=version1 <=version2相同，介于版本1和版本2间
-   *range1 || range2 只要满足范围1或范围2即可
-   *git… 请参阅“URLs as Dependencies”
-   *user/repo 请参见“Github URL”
-   *tag 已标记并发布为标记的特定版本，请参见[npm-dist-tag](https://docs.npmjs.com/cli/dist-tag)
-   *path/path/path 请参阅“localPaths”
+  包版本范围是一个字符串，其中有一个或多个空格分隔的描述符。有关指定版本范围的详细信息，请参见[semver](https://docs.npmjs.com/misc/semver)。   
+   * version 必须与版本完全匹配 
+   * >version 必须大于版本
+   * >=version 必须大于等于版本
+   * <version 必须小于版本
+   * <=version 必须小于等于版本
+   * ~version “近似等同于版本”见[semver](https://docs.npmjs.com/misc/semver)
+   * ^version “与版本兼容”见[semver](https://docs.npmjs.com/misc/semver)
+   * 1.2.x 1.2.0,1.2.1，etc.,but not 1.3.0
+   * http://… 请参阅“URLs as Dependencies”
+   * * 匹配任何版本
+   * "" 空字符串与*相同
+   * version1 - version2 与>=version1 <=version2相同，介于版本1和版本2间
+   * range1 || range2 只要满足范围1或范围2即可
+   * git… 请参阅“URLs as Dependencies”
+   * user/repo 请参见“Github URL”
+   * tag 已标记并发布为标记的特定版本，请参见[npm-dist-tag](https://docs.npmjs.com/cli/dist-tag)
+   * path/path/path 请参阅“localPaths”
   以下这些形式均有效：
   ```
   { "dependencies" :
