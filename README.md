@@ -19,10 +19,29 @@
 * man
 * directories
 * repository
-* scripts
-* config
 
   
+
+* 脚本命令/scripts
+
+  这个字段，是一个字典对象，包含包生命周期不同阶段所运行的script命令，键是生命周期事件，值是这个事件运行所需的命令
+
+  更多包scripts信息请查阅[npm-scripts](https://docs.npmjs.com/misc/scripts)
+
+* 脚本配置/config
+
+  这个字段，是一个对象，可用于设置包脚本中使用的配置参数，这些脚本在升级过程中保持不变。
+  
+  举例，如果一个包具有以下内容：
+  ```
+  { "name" : "foo", 
+    "config" : { "port" : "8080" }
+  }
+  ```
+  同时，定义一个start命令，这个命令引用了npm_package_config_port环境变量，然后用户可以用**npm config set foo:port 8001**来覆盖环境变量的port。 
+
+  更多包配置信息，请查阅[npm-config](https://docs.npmjs.com/misc/config)、[npm-scripts](https://docs.npmjs.com/misc/scripts)
+
 * 依赖包/dependencies
   
   该字段，是一个简单的对象，以包名:包版本范围形式来保存工程依赖包。依赖包也可以是tarball文件或Git URL。
