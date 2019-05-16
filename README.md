@@ -17,7 +17,24 @@
 * browser
 * bin
 * man
-* directories
+* 目录/directories
+  
+    commonJS包规范详细介绍了几种使用directories对象展示包结构的方法。在[npm's package.json](https://registry.npmjs.org/npm/latest)中，包含doc、lib和man目录。
+    在某些时候，这些信息可能会被使用。
+  **directories.lib**
+  展示主体库位置。lib文件夹没有任何特殊的功能，但是它是有用的元信息。 
+  **directories.bin**
+    如果在directories.bin中指定bin目录，则在bin文件夹中的所有文件将被添加。
+    由于bin指令的工作方式，同时指定bin路径和设置directories.bin会发生错误。如果要指定单个文件，请使用bin，而制定现有bin目录中的所有文件，请使用directories.bin。 
+  **directories.man**
+  一个存放手册页的文件夹。通过移动文件夹生成一个手册数组。
+  **directories.doc**
+  一个存放标记文件的文件夹。最终，这些可能会被很好地展示。 
+  **directories.example**
+  一个存放示例脚本文件的文件夹。这些可能会以某种方式被暴露出来。
+  **directories.test**
+  一个存放测试文件的文件夹。目前，该功能尚未开放。 
+
 * 仓库/repository
 
   这个字段，用来指定代码所在的位置。值可为字符串或对象，对象中，可设置type和url属性。指定仓库有利于其他人做贡献。
