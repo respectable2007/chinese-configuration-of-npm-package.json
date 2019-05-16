@@ -4,10 +4,19 @@
    package.json是一个JSON文件，文件内声明了一个JSON，而不是一个JavaScript对象字面量。该文件描述的行为与npm-config有关。
 
 ## package.json可配置字段
-* name
+* 名称/name
+
+  
+
 * 版本/version
   
+  如果打算发布包，那么package.json必须包含name和versiion。name和version生成唯一的标识符。包发生更改，version也应发生更改。
   
+  如果不打算发布包，那么name和version是可选的。
+
+  version必须可由[node-semver](https://github.com/npm/node-semver)（npm作为依赖包与之捆绑）解析（npm install semver命令）。
+
+  有关版本号和范围的更多信息，请查阅[semver](https://docs.npmjs.com/misc/semver)。
 
 * 描述/description
 
@@ -114,8 +123,8 @@
 
 * 文件/files
 
-   这个字段是一个文件格式数组，描述当包作为依赖包安装时所包含的条目。文件格式的语法类似于.gitignore。但当文件格式包括文件、目录或glob格式（\*，**/*等）时，文件在打包时被写入tarball中。
-   省略该字段或设置为["*"]，这意味着将包含所有文件。
+   这个字段是一个文件格式数组，描述当包作为依赖包安装时所包含的条目。文件格式的语法类似于.gitignore。但当文件格式包括文件、目录或glob格式（\*，\*\*/\*等）时，文件在打包时被写入tarball中。
+   省略该字段或设置为["\*"]，这意味着将包含所有文件。
 
    一些特殊的文件和目录也会包含或排除，不管它们是否存在于文件数组中（见下文）。
 
