@@ -263,15 +263,19 @@
     由于bin指令的工作方式，同时指定bin路径和设置directories.bin会发生错误。如果要指定单个文件，请使用bin，而制定现有bin目录中的所有文件，请使用directories.bin。 
 
   **directories.man**
+  
   一个存放手册页的文件夹。通过移动文件夹生成一个手册数组。
 
   **directories.doc**
+  
   一个存放标记文件的文件夹。最终，这些可能会被很好地展示。 
 
   **directories.example**
+  
   一个存放示例脚本文件的文件夹。这些可能会以某种方式被暴露出来。
 
   **directories.test**
+  
   一个存放测试文件的文件夹。目前，该功能尚未开放。 
 
 * 仓库/repository
