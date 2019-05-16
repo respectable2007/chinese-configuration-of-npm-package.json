@@ -13,8 +13,49 @@
 * license
 * 作者
 * files
+
+   这个字段是一个文件格式数组，描述当包作为依赖包安装时所包含的条目。文件格式的语法类似于.gitignore。但当文件格式包括文件、目录或glob格式（\*，**/*等）时，文件在打包时被写入tarball中。
+   省略该字段或设置为["*"]，这意味着将包含所有文件。
+
+   一些特殊的文件和目录也会包含或排除，不管它们是否存在于文件数组中（见下文）。
+
+   可以在包的根目录或子目录中提供一个.npmignore文件，以防止文件被包含。在包的根目录，不会重写files字段，但在子目录中，会重写。.npmignore文件的工作方式与.gitignore类似。如果有.gitignore文件，但缺少.npmignore，则将使用.gitignore的内容。
+   包含*package.json#files*的文件，不能通过.npmignore或.gitignore被排除。
+   无论设置如何，某些文件始终会被包含： 
+  * package.json
+  * README
+  * CHANGES/CHANGELOG/HISTORY
+  * LICENSE/LICENCE
+  * NOTICE
+  * main字段包含的文件
+
+  **README CHANGE LICENSE NOTICE**可以包含任何插件
+
+  相反地，以下文件会被忽略：
+  * .git
+  * CVS
+  * .svn
+  * .hg
+  * .lock-wscript
+  * .*.swp
+  * .DS_Store
+  * ._*
+  * npm-debug.log
+  * .npmrc
+  * node_modules
+  * config.gypi
+  * *.orig
+  * package-lock.json(使用shrinkwrap替代)
+
 * main
-* browser
+
+  main字段，是模块ID，即程序的主要入口。如果包名为foo，并且用户安装了它，然后执行了require("foo")，那么将返回主模块的exports对象，这就是相对于包文件夹根目录的模块ID。
+  对于大多数模块，包含一个主脚本是非常重要的，而其他的通常不太重要。
+  
+* 客户端/browser
+
+  如果模块被设计为只在客户端使用，那么请使用browser字段而不是main字段，用来提示用户该模块可能依赖node.js不支持的原语（例如窗口）。
+
 * bin
   
   包可以包含一个或多个用户可能安装到路径中的可执行文件。NPM简化了这个过程，实际上，NPM使用这个字段来安装“NPM”可执行文件。
